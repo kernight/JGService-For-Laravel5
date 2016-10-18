@@ -1,8 +1,8 @@
 {
-  "name": "steveLiuxu/JGService",
+  "name": "steveLiuxu/JGServiceForLaravel",
   "type": "library",
-  "description": "交管服务平台信息查询接口封装，包括违章信息、驾照查分。",
-  "keywords": ["JGService","steveLiuXu","weizhang","jiazhao","交管信息","违章","驾照"],
+  "description": "交管服务平台信息查询接口封装，包括违章信息、驾照查分，此为Laravel扩展包。",
+  "keywords": ["Laravel","JGService","steveLiuXu","weizhang","jiazhao","交管信息","违章","驾照"],
   "homepage": "https://github.com/steve-liuxu/JGService",
   "license": "MIT",
   "authors": [
@@ -18,7 +18,7 @@
   },
   "autoload": {
     "psr-4": {
-      "steveLiuxu\\JGService\\": "src\\steve-liuux\\JGService\\"
+      "steveLiuxu\\JGService\\": "src\\JGService\\"
     }
   }
 }
