@@ -13,7 +13,7 @@ class JGServiceProvider extends ServiceProvider{
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../../config/showapi.config.php' => config_path('steveLiuXU-JGService-showapi.php'),
+            __DIR__ . '/../config/showapi.config.php' => config_path('JGService-showapi.php'),
         ]);
     }
 
@@ -24,7 +24,7 @@ class JGServiceProvider extends ServiceProvider{
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../../config/showapi.config.php', 'JDService-showapi');
+        $this->mergeConfigFrom(__DIR__ . '/../config/showapi.config.php', 'JDService-showapi');
 
         $this->app->bind('steveLiuXu\JGService', function ($app) {
             $class = new JGService();
@@ -32,6 +32,4 @@ class JGServiceProvider extends ServiceProvider{
             return $class;
         });
     }
-
-
 }
