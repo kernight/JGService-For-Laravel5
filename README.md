@@ -1,4 +1,4 @@
-# JGService For Laravel5
+# JGService-For-Laravel5
 交管服务平台信息查询接口封装，包括违章信息、驾照查分。
 
 ---
