@@ -44,6 +44,32 @@ composer require steve-liuxu/jg-service-for-laravel ~0.8
 #### 说明
   配置文件 `config/JGService-showapi.php` 为验证码识别配置信息文件，接口申请地址为[易源数据-图形验证码识别](https://www.showapi.com/api/lookPoint/184)
 
+#### 使用
+  使用时首先修改 `config/JGService-showapi.php` 里的配置项
+  ```php
+  <?php
+  return [
+      //appid,在官网的"我的应用"中找到相关值
+      'showapi_appid' => 'xxxxx',
+  
+      //app密钥,在官网的"我的应用"中找到相关值
+      'showapi_secret' => 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+  
+      //验证码识别请求地址
+      'showapi_url'=>'http://route.showapi.com/184-2',
+  ];
+
+  ```
+  
+  然后在控制器里实例化类，调用即可
+  ```php
+   Route::get('/test', function (){
+         $test = new \steveLiuxu\JGService\JGService();
+  
+         dd($test->GetScore("xxxx","xxxx","xxx"));
+   });
+  ```
+
 ---
 
 ##开源协议
