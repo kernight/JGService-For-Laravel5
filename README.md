@@ -7,13 +7,17 @@
 >1. 本分支为Laravel5扩展包
 >2. 需要开启 php-curl 扩展
 >3. 验证码自动识别接口来自[易源数据-图形验证码识别](https://www.showapi.com/api/lookPoint/184)
+
 ---
 
 ## 安装
+
 ####步骤1. composer
 >
+
 ####步骤2. laravel5安装
 >
+
 ---
 
 ##开源协议
