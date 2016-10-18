@@ -24,12 +24,12 @@ class JGServiceProvider extends ServiceProvider{
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/showapi.config.php', 'JDService-showapi');
-
-        $this->app->bind('steveLiuXu\JGService', function ($app) {
+        $this->app->bind('SteveLiuXu\JGService\JGService', function ($app) {
             $class = new JGService();
-            $class =  $class->SetShowApiParam(config('JDService-showapi.showapi_appid'),config('JDService-showapi.showapi_secret'),config('JDService-showapi.showapi_url'));
+            $class =  $class->SetShowApiParam($app->config->get('JGService-showapi.showapi_appid'),$app->config->get('JGService-showapi.showapi_secret'),$app->config->get('JGService-showapi.showapi_url'));
             return $class;
         });
     }
+
+
 }

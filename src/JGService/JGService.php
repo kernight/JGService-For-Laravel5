@@ -53,6 +53,19 @@ class JGService{
     protected $showapi_url = "";
 
     /**
+     * 构造函数，加载文件
+     * JGService constructor.
+     */
+    public function __construct()
+    {
+        $this->SetShowApiParam(
+            config('JGService-showapi.showapi_appid'),
+            config('JGService-showapi.showapi_secret'),
+            config('JGService-showapi.showapi_url')
+        );
+    }
+
+    /**
      *设置查询区域
      * todo:根据不同区域设置不同的查询接口
      * @param string $CityCode  查询区域代码
@@ -104,9 +117,9 @@ class JGService{
      */
     public function GetScore($license_number,$file_number,$area_code)
     {
-        $query_str = "jszh=$license_number&dabh=$file_number&qm=wf&page=1&captcha=".$this->GetCaptchaChar();
+        $query_str = "jszh=$license_number&dabh=$file_number&qm=wf&page=1&captcha=".$this->SetQueryArea($area_code)->GetCaptchaChar();
 
-        $res = $this->SetQueryArea($area_code)->GetHttpResponse($this->JG_score_url,$query_str);
+        $res = $this->GetHttpResponse($this->JG_score_url,$query_str);
 
         return $res;
     }
@@ -223,7 +236,6 @@ class JGService{
     protected function GetHttpResponse($url,$query_str=null,$need_header = 0)
     {
         $ch = curl_init($url);
-        $output = false;
         try{
             curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36');
             #设置请求来源，不然会屏蔽掉

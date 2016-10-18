@@ -13,6 +13,6 @@ class JGService extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'steveLiuXu\JGService';
+        return 'SteveLiuXu\JGService\JGService';
     }
 }
