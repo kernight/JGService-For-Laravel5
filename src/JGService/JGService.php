@@ -53,6 +53,18 @@ class JGService{
     protected $showapi_url = "";
 
     /**
+     *设置查询区域
+     * todo:根据不同区域设置不同的查询接口
+     * @param string $CityCode  查询区域代码
+     * @return $this
+     */
+    public function SetQueryArea($CityCode)
+    {
+        $this->SetJGBaseUrl("http://ha.122.gov.cn/");
+        return $this;
+    }
+
+    /**
      * 设置易源接口的信息
      *
      * @param string $app_id 易源接口app_id 在官网的"我的应用"中找到相关值
@@ -82,32 +94,19 @@ class JGService{
     }
 
     /***
-     * 设置交管服务平台验证码获取地址
-     *
-     * @param string $url 交管服务平台验证码获取地址
-     * @return $this
-     */
-    public function SetJGBaseUrl($url)
-    {
-        $this->JG_base_url = $url;
-        $this->JG_captcha_url = $url."captcha";
-        $this->JG_score_url = $url."m/publicquery/scores";
-        return $this;
-    }
-
-    /***
      * 获取驾驶证扣分情况
      *
      * @param string $license_number 驾驶证号码
      * @param string $file_number 驾驶证档案编号
+     * @param string $area_code 驾驶证所在区域
      *
      * @return array
      */
-    public function GetScore($license_number,$file_number)
+    public function GetScore($license_number,$file_number,$area_code)
     {
         $query_str = "jszh=$license_number&dabh=$file_number&qm=wf&page=1&captcha=".$this->GetCaptchaChar();
-        var_dump($this);
-        $res = $this->GetHttpResponse($this->JG_score_url,$query_str);
+
+        $res = $this->SetQueryArea($area_code)->GetHttpResponse($this->JG_score_url,$query_str);
 
         return $res;
     }
@@ -135,6 +134,20 @@ class JGService{
         $paraStr .= 'showapi_sign='.$sign;
 
         return $paraStr;
+    }
+
+    /***
+     * 设置交管服务平台验证码获取地址
+     *
+     * @param string $url 交管服务平台验证码获取地址
+     * @return $this
+     */
+    protected function SetJGBaseUrl($url)
+    {
+        $this->JG_base_url = $url;
+        $this->JG_captcha_url = $url."captcha";
+        $this->JG_score_url = $url."m/publicquery/scores";
+        return $this;
     }
 
     /***
@@ -243,13 +256,3 @@ class JGService{
         }
     }
 }
-
-
-$jszh = "410511198407251231";
-$dabh = "410500798165";
-//$jszh = "410503198104030511";
-//$dabh = "410500712909";
-
-$aa = new JGService();
-$kkk = $aa->SetJGBaseUrl("http://ha.122.gov.cn/")->SetShowApiParam("25733","5fb49c950bb94643bc22814bdab76a24","http://route.showapi.com/184-2")->GetScore($jszh,$dabh);
-var_dump($kkk);

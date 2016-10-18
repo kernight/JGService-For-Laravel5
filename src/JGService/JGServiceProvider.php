@@ -26,9 +26,12 @@ class JGServiceProvider extends ServiceProvider{
     {
         $this->mergeConfigFrom(__DIR__ . '/../../config/showapi.config.php', 'JDService-showapi');
 
-        $this->app->singleton('steveLiuXu\Contracts\Connection', function ($app) {
-            return new Connection(config('riak'));
+        $this->app->bind('steveLiuXu\JGService', function ($app) {
+            $class = new JGService();
+            $class =  $class->SetShowApiParam(config('JDService-showapi.showapi_appid'),config('JDService-showapi.showapi_secret'),config('JDService-showapi.showapi_url'));
+            return $class;
         });
     }
+
 
 }

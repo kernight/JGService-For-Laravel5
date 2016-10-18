@@ -1,10 +1,10 @@
-# JGService
+# JGService For Laravel5
 交管服务平台信息查询接口封装，包括违章信息、驾照查分。
 
 ---
 
 ##使用注意
->1. 本包为Laravel5扩展包
+>1. 本分支为Laravel5扩展包
 >2. 需要开启 php-curl 扩展
 >3. 验证码自动识别接口来自[易源数据-图形验证码识别](https://www.showapi.com/api/lookPoint/184)
 ---
